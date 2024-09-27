@@ -42,6 +42,8 @@ dependencies:
   get_storage:
   go_router:
   flutter_screenutil:
+  uuid:
+  intl:
 
 dev_dependencies:
   flutter_test:

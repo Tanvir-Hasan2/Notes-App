@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../business_logic/controllers/auth_controller.dart';
+import 'package:note_app/controllers/login_controller.dart';
+import 'package:note_app/ui/pages/login.dart';
 import '../../const/app_colors.dart';
 import '../../routes/route.dart';
 import '../widgets/custom_button.dart';
@@ -11,6 +11,7 @@ import '../widgets/custom_text_field.dart';
 
 class Registration extends StatelessWidget {
   Registration({super.key});
+  final _Controller = Get.put(LoginController());
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -82,7 +83,7 @@ class Registration extends StatelessWidget {
                         'Sign Up',
                         () {
                           if (_formKey.currentState!.validate()) {
-                            Get.find<AuthController>().signUp(
+                            _Controller.signUp(
                                 _nameController.text,
                                 _emailController.text.trim(),
                                 _passwordController.text.trim(),
@@ -101,7 +102,8 @@ class Registration extends StatelessWidget {
                         style: TextStyle(color: AppColors.grayColor)),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.toNamed(login),
+                          //..onTap = () => Get.toNamed(login),
+                          ..onTap = () => Get.to(Login()),
                         text: ' Login',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w600)),

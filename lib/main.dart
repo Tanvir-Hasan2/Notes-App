@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:note_app/routes/route.dart';
+import 'package:note_app/ui/pages/splash.dart';
 import 'const/app_strings.dart';
 import 'firebase_options.dart';
 
@@ -31,9 +31,13 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               //colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
               useMaterial3: false,
+              appBarTheme: AppBarTheme(
+                centerTitle: true
+              )
             ),
-            getPages: getPages,
-            initialRoute: splash,
+            home: Splash(),
+            // getPages: getPages,
+            // initialRoute: splash,
             //home: const MyHomePage(title: 'Flutter Demo Home Page'),
           );
         });

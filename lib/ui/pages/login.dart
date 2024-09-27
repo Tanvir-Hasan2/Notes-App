@@ -2,17 +2,19 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../business_logic/controllers/auth_controller.dart';
+import 'package:note_app/controllers/login_controller.dart';
+import 'package:note_app/ui/pages/registration.dart';
 import '../../const/app_colors.dart';
+import '../../controllers/auth_controller.dart';
 import '../../routes/route.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final _controller = Get.put(LoginController());
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -47,7 +49,9 @@ class Login extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  customFormField(TextInputType.emailAddress, _emailController,
+                  customFormField(
+                      TextInputType.emailAddress,
+                      _emailController,
                       context, 'Email', (val) {
                     if (val.isEmpty) {
                       return 'this field can\'t be empty';
@@ -74,7 +78,7 @@ class Login extends StatelessWidget {
                         'Log in',
                         () {
                           if (_formKey.currentState!.validate()) {
-                            Get.find<AuthController>().login(
+                            _controller.login(
                                 _emailController.text.trim(),
                                 _passwordController.text.trim(),
                                 context);
@@ -92,7 +96,8 @@ class Login extends StatelessWidget {
                         style: TextStyle(color: AppColors.grayColor)),
                     TextSpan(
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.toNamed(registration),
+                          //..onTap = () => Get.toNamed(registration),
+                        ..onTap=()=> Get.to(Registration()),
                         text: ' Sign Up',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w600)),
