@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:note_app/const/app_strings.dart';
 import 'package:note_app/controllers/auth_controller.dart';
 import 'package:note_app/ui/pages/add_note_screen.dart';
 import '../../controllers/note_controller.dart';
 
 class HomePage extends StatelessWidget {
-  final AuthController _authController = Get.put(AuthController());
+  final _authController = Get.put(AuthController());
   final NoteController noteController = Get.put(NoteController());
 
   @override
@@ -17,7 +18,8 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.off(_authController.logout());
+                _authController.logout();
+                context.go('/login');
               },
               icon: Icon(Icons.logout)),
         ],
@@ -25,6 +27,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Get.to(AddNotePage());
+          context.push('/addNote');
         },
         label: Row(
           children: [Icon(Icons.add), Text("Add Note")],
