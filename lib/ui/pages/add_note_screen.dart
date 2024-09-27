@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:note_app/const/app_strings.dart';
 import '../../controllers/note_controller.dart';
 
@@ -40,15 +41,9 @@ class AddNotePage extends StatelessWidget {
             SizedBox(
               width: double.maxFinite,
               child: ElevatedButton(
-                // onPressed: () {
-                //   var newNote = NoteModel(
-                //     title: _titleController.text,
-                //     description: _descriptionController.text,
-                //   );
-                  //_controller.addNote(newNote);
-                 onPressed: (){
-                   _controller.addNotes(_titleController.text, _descriptionController.text);
-                  Get.back();
+                onPressed: () {
+                  _controller.addNotes(_titleController.text, _descriptionController.text);
+                  context.go('/home');
                 },
                 child: Text('Add Note'),
               ),
